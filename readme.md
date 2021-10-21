@@ -1,6 +1,6 @@
 # Create Project 2021
 
-*Gregory Bell CSCI101-F*
+*Gregory B CSCI101-F*
 
 ## Description
 

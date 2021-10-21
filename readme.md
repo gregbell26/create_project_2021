@@ -19,3 +19,4 @@ For all inquires related to this project please contact Gregory B.
 ## Edit Log
 
 * 10/15/21 - Created Repository and read me
+* 10/20/21 - Published Repo. Added Planning data

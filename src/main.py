@@ -1,11 +1,18 @@
 import sys
 
-from PyQt5.QtGui import QGuiApplication
-from PyQt5.QtQml import QQmlApplicationEngine
+from PyQt6.QtWidgets import QApplication, QMainWindow
+from ui.build.ui import Ui_MainWindow
 
-app = QGuiApplication(sys.argv)
-engine = QQmlApplicationEngine()
-engine.quit.connect(app.quit)
-engine.load()
+app = QApplication(sys.argv)
 
-sys.exit(app.exec())
+window = QMainWindow()
+ui = Ui_MainWindow()
+ui.setupUi(window)
+
+window.show()
+
+ui.main_window_status.setStyleSheet("color:#ff0011;")
+ui.current_project_title.setText("Testing123")
+ui.main_window_status.setText("Failing")
+
+app.exec()

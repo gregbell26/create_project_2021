@@ -1,0 +1,11 @@
+<RCC>
+  <qresource>
+    <file>Roboto_Slab/static/RobotoSlab-Black.ttf</file>
+    <file>Roboto_Slab/static/RobotoSlab-Light.ttf</file>
+    <file>Roboto_Slab/static/RobotoSlab-Regular.ttf</file>
+    <file>Open_Sans/static/OpenSans/OpenSans-ExtraBold.ttf</file>
+    <file>Open_Sans/static/OpenSans/OpenSans-Light.ttf</file>
+    <file>Open_Sans/static/OpenSans/OpenSans-Regular.ttf</file>
+    <file>Open_Sans/static/OpenSans/OpenSans-SemiBold.ttf</file>
+  </qresource>
+</RCC>

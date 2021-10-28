@@ -13,98 +13,155 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QLabel[objectName=&quot;main_window_status&quot; ]{
+	font-weight: 100;
+	
+}
+
+QToolButton {
+	font-weight: 600;
+}
+</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="widget" native="true">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>200</y>
+      <x>80</x>
+      <y>180</y>
       <width>421</width>
       <height>291</height>
      </rect>
     </property>
-    <widget class="QPushButton" name="pushButton_2">
+    <property name="font">
+     <font/>
+    </property>
+    <widget class="QToolButton" name="toolButton">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>191</width>
-       <height>81</height>
+       <x>230</x>
+       <y>10</y>
+       <width>181</width>
+       <height>61</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Open Sans</family>
+       <pointsize>20</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
      <property name="text">
-      <string>PushButton</string>
+      <string>Select Test Suite</string>
+     </property>
+     <property name="popupMode">
+      <enum>QToolButton::DelayedPopup</enum>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonTextOnly</enum>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_3">
+    <widget class="QToolButton" name="toolButton_2">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>90</y>
-       <width>191</width>
-       <height>81</height>
+       <x>20</x>
+       <y>190</y>
+       <width>181</width>
+       <height>61</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Open Sans</family>
+       <pointsize>20</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
      <property name="text">
-      <string>PushButton</string>
+      <string>Open Recent</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_4">
+    <widget class="QToolButton" name="toolButton_3">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>180</y>
-       <width>191</width>
-       <height>81</height>
+       <x>20</x>
+       <y>10</y>
+       <width>181</width>
+       <height>61</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Open Sans</family>
+       <pointsize>20</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
      <property name="text">
-      <string>PushButton</string>
+      <string>Open</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_5">
+    <widget class="QToolButton" name="toolButton_4">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>0</y>
-       <width>191</width>
-       <height>81</height>
+       <x>20</x>
+       <y>100</y>
+       <width>181</width>
+       <height>61</height>
       </rect>
      </property>
-     <property name="contextMenuPolicy">
-      <enum>Qt::NoContextMenu</enum>
+     <property name="font">
+      <font>
+       <family>Open Sans</family>
+       <pointsize>20</pointsize>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="text">
-      <string>PushButton</string>
+      <string>Create New</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_6">
+    <widget class="QToolButton" name="toolButton_5">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>90</y>
-       <width>191</width>
-       <height>81</height>
+       <x>230</x>
+       <y>100</y>
+       <width>181</width>
+       <height>61</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Open Sans</family>
+       <pointsize>20</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
      <property name="text">
-      <string>PushButton</string>
+      <string>Run Test</string>
+     </property>
+     <property name="popupMode">
+      <enum>QToolButton::DelayedPopup</enum>
+     </property>
+     <property name="toolButtonStyle">
+      <enum>Qt::ToolButtonTextOnly</enum>
      </property>
     </widget>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="application_title">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>120</x>
       <y>-10</y>
-      <width>551</width>
+      <width>641</width>
       <height>101</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Roboto Slab</family>
-      <pointsize>36</pointsize>
+      <pointsize>40</pointsize>
       <bold>true</bold>
       <stylestrategy>PreferAntialias</stylestrategy>
       <kerning>true</kerning>
@@ -117,19 +174,18 @@
      <string>Testinator 1000 (Working Title)</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="current_project_title">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>80</y>
-      <width>271</width>
-      <height>71</height>
+      <x>20</x>
+      <y>90</y>
+      <width>241</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Roboto Slab</family>
-      <pointsize>37</pointsize>
+      <pointsize>36</pointsize>
       <bold>true</bold>
       <stylestrategy>PreferAntialias</stylestrategy>
      </font>
@@ -138,17 +194,23 @@
      <enum>Qt::RightToLeft</enum>
     </property>
     <property name="text">
-     <string>ProjectName</string>
+     <string>Project Name</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
     </property>
    </widget>
    <widget class="Line" name="line">
     <property name="geometry">
      <rect>
       <x>260</x>
-      <y>100</y>
-      <width>16</width>
-      <height>61</height>
+      <y>80</y>
+      <width>20</width>
+      <height>91</height>
      </rect>
+    </property>
+    <property name="font">
+     <font/>
     </property>
     <property name="frameShadow">
      <enum>QFrame::Plain</enum>
@@ -158,6 +220,59 @@
     </property>
     <property name="orientation">
      <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="current_test_suite">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>90</y>
+      <width>241</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>28</pointsize>
+      <bold>false</bold>
+      <stylestrategy>PreferAntialias</stylestrategy>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="text">
+     <string>Current Test Suite</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="main_window_status">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>130</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto Slab</family>
+      <pointsize>21</pointsize>
+      <bold>false</bold>
+      <stylestrategy>PreferAntialias</stylestrategy>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="text">
+     <string>status</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
     </property>
    </widget>
   </widget>

@@ -20,3 +20,4 @@ For all inquires related to this project please contact Gregory Bell.
 
 * 10/15/21 - Created Repository and read me
 * 10/20/21 - Published Repo. Added Planning data
+* 10/28/21 - Created UI started code outline

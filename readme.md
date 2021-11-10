@@ -21,3 +21,7 @@ For all inquires related to this project please contact Gregory Bell.
 * 10/15/21 - Created Repository and read me
 * 10/20/21 - Published Repo. Added Planning data
 * 10/28/21 - Created UI started code outline
+* 11/8/21 - Drafted new proposal - Approved
+* 11/9/21 - Started development of calculator 
+* 11/9/21 - Designed UI 
+* 11/9/21 - Started work on UI controller

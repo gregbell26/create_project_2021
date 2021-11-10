@@ -14,15 +14,8 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setEnabled(True)
         MainWindow.resize(400, 550)
-        MainWindow.setStyleSheet("QLabel[objectName=\"main_window_status\" ]{\n"
-"    font-weight: 100;\n"
-"    \n"
-"}\n"
-"\n"
-"QToolButton {\n"
-"    font-weight: 600;\n"
-"}\n"
-"")
+        MainWindow.setAutoFillBackground(True)
+        MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.buttonArray_op_eval = QtWidgets.QPushButton(self.centralwidget)
@@ -77,7 +70,17 @@ class Ui_MainWindow(object):
         self.buttonArray_op_sub.setGeometry(QtCore.QRect(270, 300, 60, 60))
         self.buttonArray_op_sub.setObjectName("buttonArray_op_sub")
         self.outputDisplay = QtWidgets.QLCDNumber(self.centralwidget)
-        self.outputDisplay.setGeometry(QtCore.QRect(60, 30, 271, 131))
+        self.outputDisplay.setGeometry(QtCore.QRect(20, 60, 361, 101))
+        font = QtGui.QFont()
+        font.setPointSize(7)
+        self.outputDisplay.setFont(font)
+        self.outputDisplay.setFrameShape(QtWidgets.QFrame.Shape.Box)
+        self.outputDisplay.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
+        self.outputDisplay.setLineWidth(2)
+        self.outputDisplay.setMidLineWidth(0)
+        self.outputDisplay.setSmallDecimalPoint(True)
+        self.outputDisplay.setDigitCount(14)
+        self.outputDisplay.setSegmentStyle(QtWidgets.QLCDNumber.SegmentStyle.Flat)
         self.outputDisplay.setObjectName("outputDisplay")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)

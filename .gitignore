@@ -1,4 +1,6 @@
 .DS_Store
-/venv/*
 /.venv
 /.idea
+/dist
+/build
+main.spec

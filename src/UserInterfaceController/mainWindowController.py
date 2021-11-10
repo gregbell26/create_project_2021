@@ -6,6 +6,10 @@ class UserInterfaceController:
         self.m_sessionResults = []
         self.m_sessionExpression = []
 
+    def __updateDisplay__(self):
+        print(self.m_currentNumber)
+        self.m_display.display(self.m_currentNumber)
+
     def __addNumberToExpression__(self, _number):
         if self.m_currentNumber == "ERROR":
             return
@@ -15,16 +19,26 @@ class UserInterfaceController:
             self.m_currentNumber = "ERROR"
         else:
             self.m_currentNumber += str(_number)
-        self.m_display.display(self.m_currentNumber)
-        print(self.m_currentNumber)
+        self.__updateDisplay__()
 
     def __flipSign__(self):
-        # TODO handle empty edge case
-        if float(self.m_currentNumber) > 0:
+        # System error case
+        if self.m_currentNumber == "ERROR":
+            return
+
+        if not self.m_currentNumber or self.m_currentNumber == '0':  # Empty case
+            self.m_currentNumber = '-'
+
+        elif self.m_currentNumber == '-':  # If only character is a neg
+            self.m_currentNumber = '0'
+
+        elif float(self.m_currentNumber) > 0:
             self.m_currentNumber = '-' + self.m_currentNumber
+
         else:
             self.m_currentNumber = self.m_currentNumber[1:]
 
+        self.__updateDisplay__()
 
     def no_0_wrapper(self):
         self.__addNumberToExpression__(0)
@@ -61,5 +75,3 @@ class UserInterfaceController:
 
     def sign_wrapper(self):
         self.__flipSign__()
-
-

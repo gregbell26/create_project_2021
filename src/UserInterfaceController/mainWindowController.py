@@ -6,19 +6,30 @@ class UserInterfaceController:
         self.m_sessionResults = []
         self.m_sessionExpression = []
 
+    @staticmethod
+    def __checkIfLastValueIsOperand__(_lastChar):
+        if _lastChar == '/' or _lastChar == '*' or _lastChar == '+' or _lastChar == '-':
+            return True
+        return False
+
     def __updateDisplay__(self):
-        print(self.m_currentNumber)
+        print(self.m_currentExpression)
         self.m_display.display(self.m_currentNumber)
 
     def __addNumberToExpression__(self, _number):
         if self.m_currentNumber == "ERROR":
             return
 
+        if self.m_currentNumber.find("res") != -1:
+            self.m_currentNumber = ""
+
         # TODO handle more error states
         if _number == '.' and self.m_currentNumber.count('.') > 0:
             self.m_currentNumber = "ERROR"
         else:
             self.m_currentNumber += str(_number)
+
+        self.m_currentExpression += str(_number)
         self.__updateDisplay__()
 
     def __flipSign__(self):
@@ -38,6 +49,34 @@ class UserInterfaceController:
         else:
             self.m_currentNumber = self.m_currentNumber[1:]
 
+        self.__updateDisplay__()
+
+    def __addOperationToExpression__(self, _operation):
+        if self.m_currentNumber == "" or self.m_currentNumber == "-":
+            return
+
+        elif UserInterfaceController.__checkIfLastValueIsOperand__(
+                self.m_currentExpression[len(self.m_currentExpression) - 1]):
+            self.m_currentNumber = "ERROR"
+            self.__updateDisplay__()
+            return
+
+        elif self.m_currentNumber == "ERROR":
+            return
+
+        self.m_currentNumber = ""
+        self.m_currentExpression += _operation
+        self.__updateDisplay__()
+
+    def __evaluate__(self):
+        if self.m_currentNumber == "ERROR":
+            self.m_currentNumber = ""
+            return
+
+        self.m_sessionExpression.append(self.m_currentExpression)
+        self.m_currentNumber = f"res: {eval(self.m_currentExpression)}"
+        self.m_sessionResults.append(eval(self.m_currentExpression))
+        self.m_currentExpression = ""
         self.__updateDisplay__()
 
     def no_0_wrapper(self):
@@ -75,3 +114,18 @@ class UserInterfaceController:
 
     def sign_wrapper(self):
         self.__flipSign__()
+
+    def add_wrapper(self):
+        self.__addOperationToExpression__('+')
+
+    def subtract_wrapper(self):
+        self.__addOperationToExpression__('-')
+
+    def divide_wrapper(self):
+        self.__addOperationToExpression__('/')
+
+    def multiply_wrapper(self):
+        self.__addOperationToExpression__('*')
+
+    def eval_wrapper(self):
+        self.__evaluate__()

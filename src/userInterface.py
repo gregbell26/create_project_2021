@@ -26,6 +26,13 @@ class UserInterface:
         self.m_ui.buttonArray_op_dec.clicked.connect(self.m_uic_controller.dec_wrapper)
         self.m_ui.buttonArray_op_neg.clicked.connect(self.m_uic_controller.sign_wrapper)
 
+        self.m_ui.buttonArray_op_add.clicked.connect(self.m_uic_controller.add_wrapper)
+        self.m_ui.buttonArray_op_sub.clicked.connect(self.m_uic_controller.subtract_wrapper)
+        self.m_ui.buttonArray_op_mult.clicked.connect(self.m_uic_controller.multiply_wrapper)
+        self.m_ui.buttonArray_op_div.clicked.connect(self.m_uic_controller.divide_wrapper)
+
+        self.m_ui.buttonArray_op_eval.clicked.connect(self.m_uic_controller.eval_wrapper)
+
     def initialize(self):
         self.m_ui.setupUi(self.m_qt_window)
         self.m_uic_controller = UserInterfaceController(self.m_ui.outputDisplay)

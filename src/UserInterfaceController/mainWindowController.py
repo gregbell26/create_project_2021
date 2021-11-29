@@ -1,3 +1,6 @@
+import traceback
+
+
 class UserInterfaceController:
     def __init__(self, _display):
         self.m_currentExpression = ""
@@ -7,7 +10,7 @@ class UserInterfaceController:
         self.m_sessionExpression = []
 
     @staticmethod
-    def __checkIfLastValueIsOperand__(_lastChar):
+    def checkIfLastValueIsOperand(_lastChar):
         if _lastChar == '/' or _lastChar == '*' or _lastChar == '+' or _lastChar == '-':
             return True
         return False
@@ -32,6 +35,8 @@ class UserInterfaceController:
         self.m_currentExpression += str(_number)
         self.__updateDisplay__()
 
+    # Signs arent being passed to expression
+    # using sign right after calculations causes crash
     def __flipSign__(self):
         # System error case
         if self.m_currentNumber == "ERROR":
@@ -46,6 +51,9 @@ class UserInterfaceController:
         elif float(self.m_currentNumber) > 0:
             self.m_currentNumber = '-' + self.m_currentNumber
 
+        elif self.m_currentExpression == "":
+            self.m_currentNumber = self.m_currentNumber.split(' ')[1]
+
         else:
             self.m_currentNumber = self.m_currentNumber[1:]
 
@@ -55,7 +63,10 @@ class UserInterfaceController:
         if self.m_currentNumber == "" or self.m_currentNumber == "-":
             return
 
-        elif UserInterfaceController.__checkIfLastValueIsOperand__(
+        if self.m_currentExpression == "":
+            self.m_currentExpression = self.m_currentNumber
+
+        elif UserInterfaceController.checkIfLastValueIsOperand(
                 self.m_currentExpression[len(self.m_currentExpression) - 1]):
             self.m_currentNumber = "ERROR"
             self.__updateDisplay__()
@@ -71,13 +82,44 @@ class UserInterfaceController:
     def __evaluate__(self):
         if self.m_currentNumber == "ERROR":
             self.m_currentNumber = ""
+            self.__updateDisplay__()
+            return
+
+        if self.m_currentNumber == "" or self.m_currentExpression == "":
+            return
+
+        elif UserInterfaceController.checkIfLastValueIsOperand(
+            self.m_currentExpression[len(self.m_currentExpression) - 1]):
             return
 
         self.m_sessionExpression.append(self.m_currentExpression)
-        self.m_currentNumber = f"res: {eval(self.m_currentExpression)}"
-        self.m_sessionResults.append(eval(self.m_currentExpression))
+
+        try:
+            self.m_currentNumber = str(eval(self.m_currentExpression))
+            self.m_sessionResults.append(eval(self.m_currentExpression))
+        except ZeroDivisionError as ex_zde:
+            self.m_currentNumber = "ERROR"
+
+        # print(traceback.format_exc())
         self.m_currentExpression = ""
         self.__updateDisplay__()
+
+    def __close__(self):
+        with open("expressions.txt", "a+") as file:
+            file.write("\n=== New Session ===\n")
+            for el in self.m_sessionExpression:
+                file.write("\n")
+                file.write(str(el))
+            file.close()
+
+        with open("results.txt", "a+") as file:
+            file.write("\n=== New Session ===\n")
+            for el in self.m_sessionResults:
+                file.write("\n")
+                file.write(str(el))
+            file.close()
+
+        exit(0)
 
     def no_0_wrapper(self):
         self.__addNumberToExpression__(0)
@@ -129,3 +171,6 @@ class UserInterfaceController:
 
     def eval_wrapper(self):
         self.__evaluate__()
+
+    def close_wrapper(self):
+        self.__close__()

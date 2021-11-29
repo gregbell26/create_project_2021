@@ -33,6 +33,8 @@ class UserInterface:
 
         self.m_ui.buttonArray_op_eval.clicked.connect(self.m_uic_controller.eval_wrapper)
 
+        self.m_qt_app.aboutToQuit.connect(self.m_uic_controller.close_wrapper)
+
     def initialize(self):
         self.m_ui.setupUi(self.m_qt_window)
         self.m_uic_controller = UserInterfaceController(self.m_ui.outputDisplay)

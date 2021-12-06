@@ -1,7 +1,7 @@
 # this file will set up the user interface and bind it to the back end
 from PyQt6.QtWidgets import QApplication, QMainWindow
-from ui.build.ui import Ui_MainWindow
-from src.UserInterfaceController.mainWindowController import UserInterfaceController
+from UserInterface.build.ui import Ui_MainWindow
+from UserInterfaceController.mainWindowController import UserInterfaceController
 
 
 class UserInterface:

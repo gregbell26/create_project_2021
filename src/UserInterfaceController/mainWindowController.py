@@ -1,6 +1,3 @@
-import traceback
-
-
 class UserInterfaceController:
     def __init__(self, _display):
         self.m_currentExpression = ""
@@ -8,6 +5,7 @@ class UserInterfaceController:
         self.m_display = _display
         self.m_sessionResults = []
         self.m_sessionExpression = []
+        self.m_flaggedForOverwrite = False
 
     @staticmethod
     def checkIfLastValueIsOperand(_lastChar):
@@ -23,16 +21,15 @@ class UserInterfaceController:
         if self.m_currentNumber == "ERROR":
             return
 
-        if self.m_currentNumber.find("res") != -1:
-            self.m_currentNumber = ""
+        if self.m_flaggedForOverwrite:
+            self.m_currentNumber = str(_number)
+            self.m_flaggedForOverwrite = False
 
-        # TODO handle more error states
-        if _number == '.' and self.m_currentNumber.count('.') > 0:
+        elif _number == '.' and self.m_currentNumber.count('.') > 0:
             self.m_currentNumber = "ERROR"
         else:
             self.m_currentNumber += str(_number)
 
-        self.m_currentExpression += str(_number)
         self.__updateDisplay__()
 
     # Signs arent being passed to expression
@@ -51,9 +48,6 @@ class UserInterfaceController:
         elif float(self.m_currentNumber) > 0:
             self.m_currentNumber = '-' + self.m_currentNumber
 
-        elif self.m_currentExpression == "":
-            self.m_currentNumber = self.m_currentNumber.split(' ')[1]
-
         else:
             self.m_currentNumber = self.m_currentNumber[1:]
 
@@ -63,45 +57,50 @@ class UserInterfaceController:
         if self.m_currentNumber == "" or self.m_currentNumber == "-":
             return
 
-        if self.m_currentExpression == "":
-            self.m_currentExpression = self.m_currentNumber
-
-        elif UserInterfaceController.checkIfLastValueIsOperand(
+        if (self.m_currentExpression != "" and self.m_currentNumber == "") and UserInterfaceController.checkIfLastValueIsOperand(
                 self.m_currentExpression[len(self.m_currentExpression) - 1]):
             self.m_currentNumber = "ERROR"
+            self.m_flaggedForOverwrite = True
             self.__updateDisplay__()
             return
 
         elif self.m_currentNumber == "ERROR":
             return
 
+        self.m_currentExpression += self.m_currentNumber + _operation
         self.m_currentNumber = ""
-        self.m_currentExpression += _operation
         self.__updateDisplay__()
 
     def __evaluate__(self):
-        if self.m_currentNumber == "ERROR":
+        if self.m_currentNumber == "ERROR" or self.m_flaggedForOverwrite:
             self.m_currentNumber = ""
+            self.m_currentExpression = ""
+            self.m_flaggedForOverwrite = False
             self.__updateDisplay__()
             return
 
         if self.m_currentNumber == "" or self.m_currentExpression == "":
             return
 
-        elif UserInterfaceController.checkIfLastValueIsOperand(
+        self.m_currentExpression += self.m_currentNumber
+
+        if UserInterfaceController.checkIfLastValueIsOperand(
             self.m_currentExpression[len(self.m_currentExpression) - 1]):
             return
 
         self.m_sessionExpression.append(self.m_currentExpression)
 
         try:
-            self.m_currentNumber = str(eval(self.m_currentExpression))
-            self.m_sessionResults.append(eval(self.m_currentExpression))
+            result = eval(self.m_currentExpression)
+            self.m_currentNumber = str(result)
+            self.m_sessionResults.append(result)
         except ZeroDivisionError as ex_zde:
             self.m_currentNumber = "ERROR"
+            self.m_sessionResults.append("DIVIDE BY ZERO ERROR")
 
         # print(traceback.format_exc())
         self.m_currentExpression = ""
+        self.m_flaggedForOverwrite = True
         self.__updateDisplay__()
 
     def __close__(self):
@@ -110,14 +109,12 @@ class UserInterfaceController:
             for el in self.m_sessionExpression:
                 file.write("\n")
                 file.write(str(el))
-            file.close()
 
         with open("results.txt", "a+") as file:
             file.write("\n=== New Session ===\n")
             for el in self.m_sessionResults:
                 file.write("\n")
                 file.write(str(el))
-            file.close()
 
         exit(0)
 

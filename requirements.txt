@@ -6,8 +6,6 @@ pyinstaller-hooks-contrib==2021.3
 pynput==1.7.4
 pyobjc-core==7.3
 pyobjc-framework-ApplicationServices==7.3
-pyobjc-framework-Cocoa==7.3
-pyobjc-framework-Quartz==7.3
 pyparsing==3.0.3
 PyQt-builder==1.12.2
 PyQt6==6.2.1

@@ -14,7 +14,7 @@ class UserInterfaceController:
         return False
 
     def __updateDisplay__(self):
-        print(self.m_currentExpression)
+        # print(self.m_currentExpression)
         self.m_display.display(self.m_currentNumber)
 
     def __addNumberToExpression__(self, _number):

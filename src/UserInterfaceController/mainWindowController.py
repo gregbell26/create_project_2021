@@ -116,8 +116,6 @@ class UserInterfaceController:
                 file.write("\n")
                 file.write(str(el))
 
-        exit(0)
-
     def no_0_wrapper(self):
         self.__addNumberToExpression__(0)
 
